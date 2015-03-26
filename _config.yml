@@ -1,10 +1,14 @@
 title:            klundberg.com
-description:      My home on the internets.
+description:      Kevin Lundberg's Blog
+url:              http://www.klundberg.com
 # reading_time:     true
 # words_per_minute: 200
-# Your site's domain goes here (eg: //mmistakes.github.io, http://mademistakes.com, etc)
-# When testing locally leave blank or use http://localhost:4000
-url:              http://www.klundberg.com
+
+# https://github.com/mojombo/jekyll/wiki/Permalinks
+permalink:   /blog/:title
+
+# Amount of post to show on home page
+paginate: 10
 
 defaults:
   -
@@ -18,7 +22,6 @@ defaults:
       type: "posts"
     values:
       layout: post
-      author: Kevin Lundberg
       hidden: false
       image:
         feature:       abstract-4.jpg
@@ -30,7 +33,7 @@ defaults:
 owner:
   name:           Kevin Lundberg
   avatar:         avatar.jpg
-  bio:            "I'm a mobile software developer, working on iOS applications at Wayfair."
+  bio:            "I'm a software developer, currently working on iOS applications at Wayfair.com."
   email:          kevin@klundberg.com
   # Social networking links used in footer. Update and remove as you like.
   twitter:        kevlario
@@ -44,7 +47,6 @@ background:
 # Analytics and webmaster tools stuff goes here
 google_analytics:
 google_verify:    dm22KL26h3zCTvGyJcB3A0iQ26RnQ_VoErd22Usa94E
-# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
 bing_verify:      DD03480E534E01CB8767C5D9E73FD4DC
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -52,17 +54,10 @@ timezone:    America/New_York
 future:      true
 highlighter: pygments
 markdown:    kramdown
-gems:
-  - jekyll-sitemap
+
 sass:
   sass_dir: _sass
   style: compressed
-
-# https://github.com/mojombo/jekyll/wiki/Permalinks
-permalink:   /blog/:title
-
-# Amount of post to show on home page
-paginate: 10
 
 kramdown:
   auto_ids: true

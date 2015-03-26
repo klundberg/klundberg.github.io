@@ -1,5 +1,6 @@
 ---
-sitemap: false
+sitemap:
+  exclude: true
 ---
 
 /*
@@ -11,7 +12,6 @@ sitemap: false
  *
 */
 
-// Partials
 @import "variables";
 @import "mixins";
 @import "reset";
