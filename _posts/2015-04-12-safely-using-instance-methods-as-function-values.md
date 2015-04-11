@@ -121,4 +121,4 @@ func weakify <T: AnyObject, U, V>(owner: T, f: T->U?->()) -> V -> () {
 
 In this one, the method must accept an optional argument, because we're casting to U with the `as?` operator since it is not guaranteed that the type represented by V (the type of the parameter to the block that the original cocoa api would use) can be safely cast to U. You could write a version of this that took a method of type `U->()` instead, but you would need to use the as! operator instead, which runs the risk of crashing your program if the argument types aren't convertible safely.
 
-If you find yourself wanting to use these weakify functions, check out [this gist](http://zombo.com) which has all the weakify functions defined here and them some. If you have any questions, comments, or suggestions, reach out to me via email, twitter, or github. Enjoy!
+If you find yourself wanting to use these weakify functions, check out [this gist](https://gist.github.com/klundberg/bf591578ff41f8ad33b3) which has all the weakify functions defined here and them some. If you have any questions, comments, or suggestions, reach out to me via email, twitter, or github. Enjoy!
