@@ -6,6 +6,7 @@ comments: false
 ---
 
 {% for post in site.posts %}
+  {% unless post.hidden %}
     {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
     {% capture next_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
 
@@ -29,4 +30,5 @@ comments: false
           <ul>
         {% endif %}
     {% endif %}
+  {% endunless %}
 {% endfor %}

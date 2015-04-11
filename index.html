@@ -5,11 +5,10 @@ description: "Blog homepage"
 comments: false
 image:
   feature: abstract-2.jpg
-  credit: dargadgetz
-  creditlink: http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/
 ---
 
 {% for post in paginator.posts %}
+  {% unless post.hidden %}
 <article class="hentry">
   <header>
     {% if post.image.feature and post.image.show_in_index %}
@@ -37,6 +36,7 @@ image:
     {{ post.excerpt }}
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
+  {% endunless %}
 {% endfor %}
 
 {% if paginator.previous_page and paginator.next_page %}

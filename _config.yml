@@ -12,7 +12,19 @@ defaults:
       path: ""
     values:
       comments: false
-      image.feature.show_in_index: false
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+      author: Kevin Lundberg
+      hidden: false
+      image:
+        feature:       abstract-4.jpg
+        credit:        dargadgetz
+        creditlink:    http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/
+        show_in_index: false
 
 # Owner/author information
 owner:
@@ -33,7 +45,7 @@ background:
 google_analytics:
 google_verify:    dm22KL26h3zCTvGyJcB3A0iQ26RnQ_VoErd22Usa94E
 # https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
-bing_verify:
+bing_verify:      DD03480E534E01CB8767C5D9E73FD4DC
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone:    America/New_York
@@ -50,7 +62,7 @@ sass:
 permalink:   /blog/:title
 
 # Amount of post to show on home page
-paginate: 5
+paginate: 10
 
 kramdown:
   auto_ids: true
