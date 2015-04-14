@@ -1,0 +1,9 @@
+digraph {
+     a [label="MemoryCache"];
+     b [label="NSNotification Observer"];
+     c [label="clearMemory Method Reference"];
+
+     a -> b;
+     b -> c;
+     c -> a;
+ }
