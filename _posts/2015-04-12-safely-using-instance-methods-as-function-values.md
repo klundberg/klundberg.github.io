@@ -74,7 +74,7 @@ let clear = MemoryCache.clearMemory(mycache)
 clear(notification) 
 {% endhighlight %}
 
-Line 4 above applies the mycache value to the function that gets returned and stored in the `clear` variable. Here, any references to `self` in the originally defined `clearMemory` method are bound to the value of `mycache`, and this is where the retain cycle issue manifests: `MemoryCache.clearMemory(mycache)` is equivalent to `mycache.clearMemory`. Line 6 above performs the `clearMemory` method, as if we had simply called `mycache.clearMemory(notification).
+Line 4 above applies the mycache value to the function that gets returned and stored in the `clear` variable. Here, any references to `self` in the originally defined `clearMemory` method are bound to the value of `mycache`, and this is where the retain cycle issue manifests: `MemoryCache.clearMemory(mycache)` is equivalent to `mycache.clearMemory`. Line 6 above performs the `clearMemory` method, as if we had simply called `mycache.clearMemory(notification)`.
 
 With all this in mind, we now have a way to create a function using the static method reference of the `clearMemory` method that will be able to weakly capture a reference to self. This function needs to return a function of type `(NSNotification!) -> ()` that we can give to the `addObserverForName` method, and the function we're returning needs to call the staticaly referenced method only if the parameter representing self is not nil. This function looks something like this:
 
