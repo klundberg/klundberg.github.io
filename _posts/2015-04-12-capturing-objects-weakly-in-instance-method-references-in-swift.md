@@ -4,6 +4,7 @@ description: "Learn how to avoid unintentional reference cycles when dealing wit
 tags: Swift Functional-Programming
 category: programming
 hidden: true
+permalink: /blog/safely-using-instance-methods-as-function-values
 ---
 
 One of my favorite features of Swift is the fact that functions are first class values: they can be assigned to variables, passed around as arguments to other functions, and manipulated and decorated in numerous ways. You can even do this with methods on classes, structs and enums, since every type of function is represented in the same way in Swift.
@@ -88,7 +89,7 @@ func weakify(owner: MemoryCache, f: MemoryCache -> NSNotification! -> ()) -> NSN
 }
 {% endhighlight %}
 
-The function we're returning effectively does the same thing as the closure we gave to `NSNotificationCenter` in the original example. We can't use optional chaining since we've decoupled the object from the method that's being called on that object, but semantically it's equivalent. Now if we apply this new function to our example, we get this:
+The function we're returning effectively does the same thing as the closure we gave to `NSNotificationCenter` in the original example. Now if we apply this new function to our example, we get this:
 
 {% highlight swift %}
 class MemoryCache {
@@ -129,9 +130,46 @@ func weakify <T: AnyObject, U>(owner: T, f: T->U->()) -> U -> () {
 }
 {% endhighlight %}
 
-`T` will represent the type of the class instance you need to be made weak. It must be constrained to `AnyObject`, since the compiler doesn't let you make weak references to value types like structs/enums (which don't make sense anyways). When used to weakify the `clearMemory` method, `T` will represent the `MemoryCache` and `U` will represent `NSNotification!`.
+`T` will represent the type of the class instance you need to be made weak. It must be constrained to `AnyObject`, since the compiler doesn't let you make weak references to value types like structs/enums (even if it did, they don't make sense anyways). When used to weakify the `clearMemory` method, `T` will represent the `MemoryCache` and `U` will represent `NSNotification!`.
 
-There are other weakify functions one could write too. A weakify that takes no parameters but returns a value is one interesting case:
+There are other weakify functions one could write too. One useful simple example is a method that takes nothing and returns nothing. Say our MemoryCache class also had a way to persist the cache to disk when we got a memory warning:
+
+{% highlight swift %}
+extension MemoryCache {
+    func persistToDisk() {
+        // ...
+    }
+}
+{% endhighlight %}
+
+Disk access should not happen on the main thread, so you could use grand central dispatch to make that happen on a background queue:
+
+{% highlight swift %}
+dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+               weakify(self, MemoryCache.persistToDisk))
+{% endhighlight %}
+
+If it's desirable for the memory cache to deallocate before this operation gets the chance to run on the background queue, this will make sure it happens safely. The weakify function we need to implement for this is simple:
+
+{% highlight swift %}
+func weakify <T: AnyObject>(owner: T, f: T->()->()) -> () -> () {
+    return { [weak owner] obj in
+        if let owner = owner {
+            f(owner)()
+        }
+    }
+}
+{% endhighlight %}
+
+Given the static method reference that returns a function of the type `() -> ()`, this returns another of the type `() -> ()` that executes the original method as is if owner is still valid.
+
+Another example is a `weakify` that takes no parameters but returns somehing. The type signature of that would look like this:
+
+{% highlight swift %}
+func weakify <T: AnyObject, U>(owner: T, f: T->()->U) -> () -> U?
+{% endhighlight %}
+
+Here we have an input function that takes a `T` and returns a function that takes nothing and returns a `U`. The return value of this weakify function may seem odd at first: why does the resulting function have to return an optional `U` when the given method returns a non-optional `U`? The body of the function should answer that:
 
 {% highlight swift %}
 func weakify <T: AnyObject, U>(owner: T, f: T->()->U) -> () -> U? {
@@ -145,9 +183,9 @@ func weakify <T: AnyObject, U>(owner: T, f: T->()->U) -> () -> U? {
 }
 {% endhighlight %}
 
-The static method reference will call for a method of the type `() -> U`, but weakify must return a function of type `() -> U?`. If the owner is no longer in memory, we cannot call the method reference with it as a parameter, so we must return some other value, and nil is the only reasonable one in this case.
+Weak references must always be optional, so that the type system can represent what happens when said reference is removed from memory. If owner here is nil, it would not be possible to call the given method reference since it expects a non-optional value. Since we must return something according to the method signature, the only thing we can reasonably return here is nil which necessitates the `U?` return type of the resulting function.
 
-You could even cast values within `weakify`, for example if you were using a cocoa api that has a block that takes `AnyObject` as a parameter with a method that expects a more concrete type:
+There are some crazy applications you can do here if your use case needs it. You could cast values within `weakify`, for example, if you were using an API that requires a potentially unsafe downcast from the type that the method you want to use expects as a parameter:
 
 {% highlight swift %}
 func weakify <T: AnyObject, U, V>(owner: T, f: T->U?->()) -> V -> () {
@@ -159,6 +197,6 @@ func weakify <T: AnyObject, U, V>(owner: T, f: T->U?->()) -> V -> () {
 }
 {% endhighlight %}
 
-In this one, the method must accept an optional argument, because we're casting to `U` with the `as?` operator since it is not guaranteed that the type represented by `V` (the type of the parameter to the block that the original cocoa api would use) can be safely cast to `U`. You could write a version of this that took a method of type `U->()` instead, but you would need to use the `as!` operator (or the `as` operator in swift 1.1 and earlier) instead, which runs the risk of crashing your program if the argument types aren't convertible safely.
+In this one, `V` represents the type of the closure or block that is expected by the API consuming your weakified method. The method we are weakifying must accept an optional argument, because we're casting to `U` from `V` with the `as?` operator since it is not guaranteed that the type represented by `V` can be safely cast to `U`. You could write a version of this that took a method of type `U->()` instead, but you would need to use the `as!` operator (or the `as` operator in swift 1.1 and earlier) instead, which runs the risk of crashing your program if the argument types aren't convertible safely.
 
-If you find yourself wanting to use these weakify functions, check out [this gist](https://gist.github.com/klundberg/bf591578ff41f8ad33b3) which has all the weakify functions defined here and them some. If you have any questions, comments, or suggestions, reach out to me via email <kevin@klundberg.com>, twitter, or github. Enjoy!
+If you find yourself wanting to use these weakify functions, check out [this gist](https://gist.github.com/klundberg/bf591578ff41f8ad33b3) which has all the weakify functions defined here and them some. If you have any questions, comments, or suggestions, reach out to me via email (<kevin@klundberg.com>) or [Twitter](https://twitter.com/kevlario). Enjoy!
