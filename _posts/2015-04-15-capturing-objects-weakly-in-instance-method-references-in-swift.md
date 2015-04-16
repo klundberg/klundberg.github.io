@@ -3,8 +3,6 @@ title: Capturing Objects Weakly In Instance Method References In Swift
 description: "Learn how to avoid unintentional reference cycles when dealing with method values in a functional way."
 tags: Swift Functional-Programming
 category: programming
-hidden: true
-permalink: /blog/safely-using-instance-methods-as-function-values
 ---
 
 One of my favorite features of Swift is the fact that functions are first class values: they can be assigned to variables, passed around as arguments to other functions, and manipulated and decorated in numerous ways. You can even do this with methods on classes, structs and enums, since every type of function is represented in the same way in Swift.
@@ -43,7 +41,7 @@ Here when we initialize the cache, we listen for memory warning notifications an
 Though this looks nice, there's one very large caveat: when you reference an instance method in this way and store the method value elsewhere, that method strongly references self. If it didn't, your program could crash if the method value outlived the instance that it was bound to. Not crashing is important, but in this scenario it causes a retain cycle, since `MemoryCache` strongly references the notification observer, which strongly references the given closure, which strongly references the `MemoryCache`:
 
 <div style="margin: 0 auto; width: 320px">
-<img src="/images/retaincycle.png" alt="MemoryCache -> NSNotification Observer -> clearMemory Method Reference -> MemoryCache" />
+<img src="/images/retaincycle.png" alt="MemoryCache -> NSNotification Observer -> clearMemory Method Reference -> MemoryCache" title="Retain Cycle Illustration" />
 </div>
 
 At this point we could just cave in and pass a closure into the `usingBlock:` parameter that weakly captures `self`, but that seems a little superfluous here if we only are going to call one other method in that closure anyways (and it's not as fun!)
@@ -52,7 +50,7 @@ One valid way you could get around this in some cases by using the target-action
 
 A viable solution needs a way to make the instance method we want to call reference self weakly, and do the right thing when the weak self reference happens to be nil. To do this, we need to take advantage of another neat swift feature: static method references.
 
-**Static method references** are an esoteric feature of Swift types. To get a raw reference to the `clearMemory` method in swift, you can do this:
+**Static instance method references** are an esoteric feature of Swift types. To get a raw reference to the `clearMemory` method in swift, you can do this:
 
 {% highlight swift %}
 let clearMethod = MemoryCache.clearMemory
@@ -130,7 +128,7 @@ func weakify <T: AnyObject, U>(owner: T, f: T->U->()) -> U -> () {
 }
 {% endhighlight %}
 
-`T` will represent the type of the class instance you need to be made weak. It must be constrained to `AnyObject`, since the compiler doesn't let you make weak references to value types like structs/enums (even if it did, they don't make sense anyways). When used to weakify the `clearMemory` method, `T` will represent the `MemoryCache` and `U` will represent `NSNotification!`.
+`T` will represent the type of the class instance you need to be made weak. It must be constrained to `AnyObject`, since the you cannot make weak references to struct/enums. When used to weakify the `clearMemory` method, `T` will represent the `MemoryCache` and `U` will represent `NSNotification!`.
 
 There are other weakify functions one could write too. One useful simple example is a method that takes nothing and returns nothing. Say our MemoryCache class also had a way to persist the cache to disk when we got a memory warning:
 
@@ -149,7 +147,7 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
                weakify(self, MemoryCache.persistToDisk))
 {% endhighlight %}
 
-If it's desirable for the memory cache to deallocate before this operation gets the chance to run on the background queue, this will make sure it happens safely. The weakify function we need to implement for this is simple:
+If it's desirable for the memory cache to deallocate before this operation gets the chance to run on the background queue, this will make sure it happens safely. The weakify function we need to implement for this use case is simple:
 
 {% highlight swift %}
 func weakify <T: AnyObject>(owner: T, f: T->()->()) -> () -> () {
@@ -169,7 +167,7 @@ Another example is a `weakify` that takes no parameters but returns somehing. Th
 func weakify <T: AnyObject, U>(owner: T, f: T->()->U) -> () -> U?
 {% endhighlight %}
 
-Here we have an input function that takes a `T` and returns a function that takes nothing and returns a `U`. The return value of this weakify function may seem odd at first: why does the resulting function have to return an optional `U` when the given method returns a non-optional `U`? The body of the function should answer that:
+Here we have an input function that takes a `T` and returns a function that takes nothing and returns a `U`. The return value of this weakify function may seem odd at first: why does the resulting function have to return an *optional* `U` when the given method returns a *non-optional* `U`? The body of the function should answer that:
 
 {% highlight swift %}
 func weakify <T: AnyObject, U>(owner: T, f: T->()->U) -> () -> U? {
@@ -197,6 +195,6 @@ func weakify <T: AnyObject, U, V>(owner: T, f: T->U?->()) -> V -> () {
 }
 {% endhighlight %}
 
-In this one, `V` represents the type of the closure or block that is expected by the API consuming your weakified method. The method we are weakifying must accept an optional argument, because we're casting to `U` from `V` with the `as?` operator since it is not guaranteed that the type represented by `V` can be safely cast to `U`. You could write a version of this that took a method of type `U->()` instead, but you would need to use the `as!` operator (or the `as` operator in swift 1.1 and earlier) instead, which runs the risk of crashing your program if the argument types aren't convertible safely.
+In this one, `V` represents the type of the closure or block that is expected by the API consuming your weakified method. The method we are weakifying must accept an optional argument, because we're casting to `U` from `V` with the `as?` operator since it is not guaranteed that the type represented by `V` can be safely cast to `U`. You could write a version of this that took a method of type `U->()`, but you would need to use the `as!` operator (or the `as` operator in swift 1.1 and earlier) instead, which runs the risk of crashing your program if the argument types aren't convertible safely.
 
 If you find yourself wanting to use these weakify functions, check out [this gist](https://gist.github.com/klundberg/bf591578ff41f8ad33b3) which has all the weakify functions defined here and them some. If you have any questions, comments, or suggestions, reach out to me via email (<kevin@klundberg.com>) or [Twitter](https://twitter.com/kevlario). Enjoy!

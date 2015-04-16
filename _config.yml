@@ -4,7 +4,6 @@ url:              http://klundberg.com
 # reading_time:     true
 # words_per_minute: 200
 
-# https://github.com/mojombo/jekyll/wiki/Permalinks
 permalink:   /blog/:title
 
 # Amount of post to show on home page
@@ -33,7 +32,7 @@ defaults:
 owner:
   name:           Kevin Lundberg
   avatar:         avatar.jpg
-  bio:            "I'm a software developer, currently working on iOS applications at Wayfair.com."
+  bio:            "I'm a software developer, currently working on iOS applications at Wayfair.com. My views and words are my own."
   email:          kevin@klundberg.com
   # Social networking links used in footer. Update and remove as you like.
   twitter:        kevlario
