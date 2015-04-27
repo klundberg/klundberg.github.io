@@ -34,7 +34,12 @@ sitemap:
     {% endif %}
   </header>
   <div class="entry-content">
+  {% if post.excerpt %}
     {{ post.excerpt }}
+    <a href="{{ post.url }}">Read more...</a>
+  {% else %}
+    {{ post.content }}
+  {% endif %}
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
   {% endunless %}

@@ -10,7 +10,7 @@
 					<h4>{{ site.owner.name }}</h4>
 					<p>{{ site.owner.bio }}</p>
 				</li>
-				<li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li>
+				<!-- <li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li> -->
 				{% if site.owner.email %}<li>
 					<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#107;&#101;&#118;&#105;&#110;&#064;&#107;&#108;&#117;&#110;&#100;&#098;&#101;&#114;&#103;&#046;&#099;&#111;&#109;"><i class="fa fa-fw fa-envelope"></i> Email</a>
 				</li>{% endif %}
@@ -40,6 +40,9 @@
 				</li>{% endif %}
 				{% if site.owner.tumblr %}<li>
 					<a href="http://{{ site.owner.tumblr }}.tumblr.com"><i class="fa fa-fw fa-tumblr"></i> Tumblr</a>
+				</li>{% endif %}
+				{% if site.owner.onename %}<li>
+					<a href="https://onename.com/{{ site.owner.onename }}"><i class="fa fa-fw fa-circle-o"></i> Onename</a>
 				</li>{% endif %}
 			</ul><!-- /.dl-submenu -->
 		</li>
