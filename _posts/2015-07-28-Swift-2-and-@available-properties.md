@@ -43,7 +43,7 @@ func makeAnotherSearchController() -> UISearchController {
 }
 {% endhighlight %}
 
-We can't use runtime checks with #available here since the offending class is in the type signature, and what would we return from here on iOS 7 anyways even if we could? We instead have to use the `@available` attribute to annotate the function's intent that it only be callable on iOS 8 and above:
+We can't use runtime checks with `#available` here since the offending class is in the type signature, and what would we return from here on iOS 7 anyways even if we could? We instead have to use the `@available` attribute to annotate the function's intent that it only be callable on iOS 8 and above:
 
 {% highlight swift %}
 @available(iOS 8.0, *)
