@@ -1,6 +1,6 @@
 ---
 title: Swift 2 and @available properties
-description: When the @available annotation in swift 2 won't help you.
+description: How the @available annotation in swift 2 may get in your way.
 tags: Swift 
 category: programming
 ---
