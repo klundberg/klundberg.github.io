@@ -1,10 +1,13 @@
 title:            klundberg.com
 description:      Kevin Lundberg's Blog
 url:              http://klundberg.com
+locale:           en
 # reading_time:     true
 # words_per_minute: 200
 
 permalink:   /blog/:title
+
+gems: [jekyll-paginate]
 
 # Amount of post to show on home page
 paginate: 10
@@ -34,7 +37,6 @@ owner:
   avatar:         avatar.jpg
   bio:            "I'm a software developer, currently working on iOS applications at Wayfair.com. My views and words are my own."
   email:          kevin@klundberg.com
-  # Social networking links used in footer. Update and remove as you like.
   twitter:        kevlario
   github:         klundberg
   stackexchange:  https://stackexchange.com/users/10244/kevlar
@@ -52,7 +54,7 @@ bing_verify:      DD03480E534E01CB8767C5D9E73FD4DC
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone:    America/New_York
 future:      true
-highlighter: pygments
+highlighter: pygmentize
 markdown:    kramdown
 
 sass:
@@ -64,7 +66,7 @@ kramdown:
   footnote_nr: 1
   entity_output: as_char
   toc_levels: 1..6
-  use_coderay: true
+  enable_coderay: true
 
   coderay:
     coderay_line_numbers: nil

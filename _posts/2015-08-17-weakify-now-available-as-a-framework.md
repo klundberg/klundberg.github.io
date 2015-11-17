@@ -1,6 +1,5 @@
 ---
 title: Weakify now available as a framework
-description: When the @available annotation in swift 2 won't help you.
 tags: Swift Cocoapods Carthage
 category: programming
 excerpt: false
