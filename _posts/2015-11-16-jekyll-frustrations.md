@@ -5,7 +5,7 @@ tags: Jekyll
 category: meta
 ---
 
-It's been awhile since I wrote a blog post, and upon wanting to come back and do another I noticed that jekyll had been updated to 3.0 (jekyll is what generates this site, which I chose since it's currently hosted on github pages which has native jekyll support). I typically am enthusiastic about upgrading to the most up to date versions of the software I use so I figured I'd give it a go. However I ran into a few roadblocks that I could not easily find answers to on duckduckgo/google so I figured I'd post them here in case anyone else hits them.
+It's been awhile since I wrote a blog post, and upon wanting to come back and do another I noticed that [jekyll](http://jekyllrb.com) had been updated to 3.0 (jekyll is what generates this site, which I chose since it's currently hosted on github pages which has native jekyll support). I typically am enthusiastic about upgrading to the most up to date versions of the software I use so I figured I'd give it a go. However I ran into a few roadblocks that I could not easily find answers to on duckduckgo/google so I figured I'd post them here in case anyone else hits them.
 
 # Reinstalling and updating gems
 
