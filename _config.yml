@@ -54,7 +54,7 @@ bing_verify:      DD03480E534E01CB8767C5D9E73FD4DC
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone:    America/New_York
 future:      true
-highlighter: pygmentize
+highlighter: pygments
 markdown:    kramdown
 
 sass:

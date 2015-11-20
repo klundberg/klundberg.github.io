@@ -1,6 +1,6 @@
 ---
 title: Jekyll frustrations
-description: My recent jekyll woes
+description: My recent woes trying to wrestle with jekyll.
 tags: Jekyll
 category: meta
 ---
