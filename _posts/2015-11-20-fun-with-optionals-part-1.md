@@ -36,7 +36,7 @@ This defines a variable that may either hold a String or nil. Looks good so far,
 var myOtherStr: String?
 {% endhighlight %}
 
-The question mark after the name of the type is the shrothand for `Optional<String>` here. Few other types have this kind of syntactic support, and that's because the concept of optionality is so prevalent that this special syntax makes reading code with optional values a lot easier to read.
+The question mark after the name of the type is the shorthand for `Optional<String>` here. Few other types have this kind of syntactic support, and that's because the concept of optionality is so prevalent that this special syntax makes reading code with optional values a lot easier to read.
 
 ## Assigning Values
 
