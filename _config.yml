@@ -55,14 +55,12 @@ bing_verify:      DD03480E534E01CB8767C5D9E73FD4DC
 timezone:    America/New_York
 future:      true
 
-highlighter: pygments
-markdown:    kramdown
-
 sass:
   sass_dir: _sass
   style: compressed
 
 kramdown:
+  input: GFM
   auto_ids: true
   footnote_nr: 1
   entity_output: as_char
