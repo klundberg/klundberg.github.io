@@ -2,15 +2,15 @@ title:            klundberg.com
 description:      Kevin Lundberg's Blog
 url:              http://klundberg.com
 locale:           en
-# reading_time:     true
-# words_per_minute: 200
+reading_time:     true
+words_per_minute: 200
 
 permalink:   /blog/:title
 
 gems: [jekyll-paginate]
 
 # Amount of post to show on home page
-paginate: 10
+paginate: 12
 
 defaults:
   -
@@ -54,6 +54,7 @@ bing_verify:      DD03480E534E01CB8767C5D9E73FD4DC
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone:    America/New_York
 future:      true
+
 highlighter: pygments
 markdown:    kramdown
 
@@ -66,14 +67,13 @@ kramdown:
   footnote_nr: 1
   entity_output: as_char
   toc_levels: 1..6
-  enable_coderay: true
 
-  coderay:
-    coderay_line_numbers: nil
-    coderay_line_numbers_start: 1
-    coderay_tab_width: 4
-    coderay_bold_every: 10
-    coderay_css: class
+  syntax_highlighter_opts:
+    line_numbers: nil
+    line_numbers_start: 1
+    tab_width: 4
+    bold_every: 10
+    css: class
 
 include: [".htaccess"]
 exclude: ["lib", "config.rb", "Capfile", "config", "Gemfile", "Gemfile.lock", "README.md", "LICENSE", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules"]

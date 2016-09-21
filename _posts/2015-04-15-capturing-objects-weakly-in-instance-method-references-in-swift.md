@@ -68,9 +68,9 @@ This type is bascially a function that returns a function (also known as curried
 // create the cache
 let mycache = MemoryCache()
 // apply the clearMemory static method reference to the cache object
-let clear = MemoryCache.clearMemory(mycache) 
+let clear = MemoryCache.clearMemory(mycache)
 // actually perform the clearMemory method on "mycache"
-clear(notification) 
+clear(notification)
 {% endhighlight %}
 
 Line 4 above applies the mycache value to the function that gets returned and stored in the `clear` variable. Here, any references to `self` in the originally defined `clearMemory` method are bound to the value of `mycache`, and this is where the retain cycle issue manifests: `MemoryCache.clearMemory(mycache)` is equivalent to `mycache.clearMemory`. Line 6 above performs the `clearMemory` method, as if we had simply called `mycache.clearMemory(notification)`.

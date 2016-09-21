@@ -20,7 +20,7 @@ public enum Optional<Wrapped> {
 }
 {% endhighlight %}
 
-There's more to it than that if you look for yourself, but that's the bare minimum necessary to implement the concept. It's an enum that can either be nothing (the `Optional.None` case) or something (the `Optional.Some(Wrapped)` case, where `Wrapped` stands in for whichever type you want to represent in an optional way). 
+There's more to it than that if you look for yourself, but that's the bare minimum necessary to implement the concept. It's an enum that can either be nothing (the `Optional.None` case) or something (the `Optional.Some(Wrapped)` case, where `Wrapped` stands in for whichever type you want to represent in an optional way).
 
 ## Shorthand Type Definition
 
@@ -86,7 +86,7 @@ public init(nilLiteral: ()) {
 
 Pretty neat!
 
-#Conclusion
+# Conclusion
 
 We've only scratched the surface here of how optionals work. Swift's native syntax and compiler support for optionals makes it as easy to assign values to an optional type as assigning to a normal typed variable, with auto-wrapping and the nil literal conversion at the compiler level.
 
