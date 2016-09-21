@@ -55,6 +55,9 @@ bing_verify:      DD03480E534E01CB8767C5D9E73FD4DC
 timezone:    America/New_York
 future:      true
 
+highlighter: rouge
+markdown: kramdown
+
 sass:
   sass_dir: _sass
   style: compressed
@@ -65,6 +68,7 @@ kramdown:
   footnote_nr: 1
   entity_output: as_char
   toc_levels: 1..6
+  syntax_highlighter: rouge
 
   syntax_highlighter_opts:
     line_numbers: nil
