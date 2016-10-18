@@ -1,0 +1,54 @@
+==================================================================
+https://keybase.io/kevlario
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://klundberg.com
+  * I am kevlario (https://keybase.io/kevlario) on keybase.
+  * I have a public key ASAXKidIohQbWt66-UXKy-Ek8vejycrMu6F4xoG3oojvTQo
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "0120172a2748a2141b5adebaf945cacbe124f2f7a3c9caccbba178c681b7a288ef4d0a",
+            "host": "keybase.io",
+            "kid": "0120172a2748a2141b5adebaf945cacbe124f2f7a3c9caccbba178c681b7a288ef4d0a",
+            "uid": "4a7c0a9b6929ab52e71bb271b5dbe619",
+            "username": "kevlario"
+        },
+        "service": {
+            "hostname": "klundberg.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "client": {
+        "name": "keybase.io go client",
+        "version": "1.0.17"
+    },
+    "ctime": 1476752030,
+    "expire_in": 504576000,
+    "merkle_root": {
+        "ctime": 1476751766,
+        "hash": "9ea5d9c0a4f146e1cb6e5750b05ffb588f81d5ef653d85b81fb95295d6ffd3414d4b29a148887b41bf80249d1b6bc1a06c93d95523dacc6bb6a94c682c24e857",
+        "seqno": 678937
+    },
+    "prev": "a34c6eb249d98b6378227d3bb2f9f5b641f941ef8dff56c26f7442b8fee89cb8",
+    "seqno": 8,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgFyonSKIUG1reuvlFysvhJPL3o8nKzLuheMaBt6KI700Kp3BheWxvYWTFAvR7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTIwMTcyYTI3NDhhMjE0MWI1YWRlYmFmOTQ1Y2FjYmUxMjRmMmY3YTNjOWNhY2NiYmExNzhjNjgxYjdhMjg4ZWY0ZDBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwMTcyYTI3NDhhMjE0MWI1YWRlYmFmOTQ1Y2FjYmUxMjRmMmY3YTNjOWNhY2NiYmExNzhjNjgxYjdhMjg4ZWY0ZDBhIiwidWlkIjoiNGE3YzBhOWI2OTI5YWI1MmU3MWJiMjcxYjVkYmU2MTkiLCJ1c2VybmFtZSI6ImtldmxhcmlvIn0sInNlcnZpY2UiOnsiaG9zdG5hbWUiOiJrbHVuZGJlcmcuY29tIiwicHJvdG9jb2wiOiJodHRwOiJ9LCJ0eXBlIjoid2ViX3NlcnZpY2VfYmluZGluZyIsInZlcnNpb24iOjF9LCJjbGllbnQiOnsibmFtZSI6ImtleWJhc2UuaW8gZ28gY2xpZW50IiwidmVyc2lvbiI6IjEuMC4xNyJ9LCJjdGltZSI6MTQ3Njc1MjAzMCwiZXhwaXJlX2luIjo1MDQ1NzYwMDAsIm1lcmtsZV9yb290Ijp7ImN0aW1lIjoxNDc2NzUxNzY2LCJoYXNoIjoiOWVhNWQ5YzBhNGYxNDZlMWNiNmU1NzUwYjA1ZmZiNTg4ZjgxZDVlZjY1M2Q4NWI4MWZiOTUyOTVkNmZmZDM0MTRkNGIyOWExNDg4ODdiNDFiZjgwMjQ5ZDFiNmJjMWEwNmM5M2Q5NTUyM2RhY2M2YmI2YTk0YzY4MmMyNGU4NTciLCJzZXFubyI6Njc4OTM3fSwicHJldiI6ImEzNGM2ZWIyNDlkOThiNjM3ODIyN2QzYmIyZjlmNWI2NDFmOTQxZWY4ZGZmNTZjMjZmNzQ0MmI4ZmVlODljYjgiLCJzZXFubyI6OCwidGFnIjoic2lnbmF0dXJlIn2jc2lnxEA3/CGXzLoJUuO7QG+5qBuFPYO3aTQ/K6wrc4tHJU+sd8zPatDK3li54Je4UnWGI17qBkGEfBS18dm/KEMMJLwLqHNpZ190eXBlIKRoYXNogqR0eXBlCKV2YWx1ZcQg5QqpGLPlGEZ5LhnRTFrk30o9EwSaJ+ZatpTok6pc8TyjdGFnzQICp3ZlcnNpb24B
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/kevlario
+
+==================================================================
