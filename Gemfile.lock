@@ -142,7 +142,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  github-pages
+  github-pages (= 106)
   jekyll-feed
   jekyll-gist
   jekyll-paginate
