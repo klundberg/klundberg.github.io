@@ -1,7 +1,7 @@
 ---
 title: Capturing Objects Weakly In Instance Method References In Swift
 description: "Learn how to avoid unintentional reference cycles when dealing with method values in a functional way."
-tags: Swift Functional-Programming
+tags: swift functional-programming
 category: programming
 ---
 

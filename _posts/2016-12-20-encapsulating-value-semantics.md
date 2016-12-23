@@ -1,6 +1,6 @@
 ---
 title: Encapsulating Value Semantics, Part 1
-tags:  Swift value-semantics
+tags:  swift value-semantics
 category: programming
 ---
 

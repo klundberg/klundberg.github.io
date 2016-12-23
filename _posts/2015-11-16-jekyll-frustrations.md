@@ -1,7 +1,7 @@
 ---
 title: Jekyll frustrations
 description: My recent woes trying to wrestle with jekyll.
-tags: Jekyll
+tags: jekyll blog
 category: meta
 ---
 
@@ -15,7 +15,7 @@ The biggest issue stemmed from me upgrading to OS X 10.11, which due to system i
 sudo gem install -n /usr/local/bin jekyll
 {% endhighlight %}
 
-Without the -n argument, gems try to install to /usr/bin which is off limits now from SIP. I would have hoped that Apple would have changed gem install to default there in their distribution of Ruby, but perhaps that's asking too much :(. 
+Without the -n argument, gems try to install to /usr/bin which is off limits now from SIP. I would have hoped that Apple would have changed gem install to default there in their distribution of Ruby, but perhaps that's asking too much :(.
 
 # _config.yml and syntax coloring woes
 
@@ -24,7 +24,7 @@ Jekyll's previous config for 2.x needs a couple changes depending on what you ha
 Next was a really weird issue. Every time I tried to build I got this kind of error:
 
 {% highlight bash %}
-  Dependency Error: Yikes! It looks like you don't have pygments or one of its dependencies installed. In order to use Jekyll as currently configured, you'll need to install this gem. The full error message from Ruby is: 'cannot load such file -- pygments' If you run into trouble, you can find helpful resources at http://jekyllrb.com/help/! 
+  Dependency Error: Yikes! It looks like you don't have pygments or one of its dependencies installed. In order to use Jekyll as currently configured, you'll need to install this gem. The full error message from Ruby is: 'cannot load such file -- pygments' If you run into trouble, you can find helpful resources at http://jekyllrb.com/help/!
  ERROR: YOUR SITE COULD NOT BE BUILT:
         ------------------------------------
         pygments

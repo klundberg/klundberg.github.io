@@ -1,13 +1,13 @@
 ---
 title: Making 'weakify' better with metatype values
 description: "Using metatypes with weakify to achieve more concise code."
-tags: Swift Functional-Programming
+tags: swift functional-programming
 category: programming
 ---
 
-My [first major blog post]({% post_url 2015-04-15-capturing-objects-weakly-in-instance-method-references-in-swift %}) here was on crafting the [weakify function](https://gist.github.com/klundberg/bf591578ff41f8ad33b3) and how you could use it to weakly bind a method reference to an instance of the class the method is defined in, so that you could use the resulting function without worrying about potential memory retain cycles. I've used it numerous times in my projects, but in some cases it can get a bit unwieldy, such that an explicit closure would seem to be the shorter option. 
+My [first major blog post]({% post_url 2015-04-15-capturing-objects-weakly-in-instance-method-references-in-swift %}) here was on crafting the [weakify function](https://gist.github.com/klundberg/bf591578ff41f8ad33b3) and how you could use it to weakly bind a method reference to an instance of the class the method is defined in, so that you could use the resulting function without worrying about potential memory retain cycles. I've used it numerous times in my projects, but in some cases it can get a bit unwieldy, such that an explicit closure would seem to be the shorter option.
 
-In the original post, I defined a class named `MemoryCache`, which when used with `weakify` looks like this: 
+In the original post, I defined a class named `MemoryCache`, which when used with `weakify` looks like this:
 
 {% highlight swift %}
 let weakClearMemory = weakify(self, MemoryCache.clearMemory)
@@ -31,7 +31,7 @@ Luckily, we can use metatype values to reference the class without explicitly na
 
 Objective-C has a way to access the runtime metatype value of an instance by calling the `class` instance method, which returned the most specific class that the instance is a member of. In Swift, every instance of a type (be it class, struct, or enum) can do the same thing with the `dynamicType` property.
 
-Calling `self.dynamicType` will return the same metatype value as referencing the explicit class would (in most cases), and the compiler knows that the type has all the methods defined on the class that represents `self`. Therefore, we can change the example to the following: 
+Calling `self.dynamicType` will return the same metatype value as referencing the explicit class would (in most cases), and the compiler knows that the type has all the methods defined on the class that represents `self`. Therefore, we can change the example to the following:
 
 {% highlight swift %}
 let weakHandleSuccess = weakify(self, self.dynamicType.handleSuccess)

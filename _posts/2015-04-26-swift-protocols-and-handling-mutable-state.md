@@ -1,7 +1,7 @@
 ---
 title: Swift Protocols And Handling Mutable State
 description: "The nuances of swift protocols and how they handle object and value types."
-tags: Swift
+tags: swift
 category: programming
 ---
 
@@ -10,7 +10,7 @@ I recently ran into a curious problem on one of my side projects that I didn't u
 {% highlight swift %}
 protocol MyCellType {
     var mydelegate: MyCellDelegate? { get set } // another swift protocol
-    func configure(model: MyModel) 
+    func configure(model: MyModel)
 }
 
 // later, in a cellForItemAtIndexPath call:
@@ -26,7 +26,7 @@ It may not be guaranteed that all cells served by the collection view will confo
 
 > (As a side note, it's frustrating that this method on UICollectionView returns `AnyObject!`  instead of `UICollectionViewCell?`. I use `as!` here as I cannot fathom a time when this method doesn't return a collection view cell; if there is some situation please let me know!)
 
-When I initially wrote this code, I was confused to see a warning show up on the first line inside the if-let statement: 
+When I initially wrote this code, I was confused to see a warning show up on the first line inside the if-let statement:
 
 > Cannot assign to 'mydelegate' in 'mycell'
 
@@ -35,7 +35,7 @@ Why not? It didn't make sense to me. I figured that since the `MyCellType` proto
 {% highlight swift %}
 @objc protocol MyCellType {
     var mydelegate: MyCellDelegate? { get set } // another swift protocol
-    func configure(model: MyModel) 
+    func configure(model: MyModel)
 }
 {% endhighlight %}
 
@@ -84,12 +84,12 @@ However, I prefer to use `let` wherever possible and use `var` only when necessa
 {% highlight swift %}
 protocol MyCellType: class {
     var mydelegate: MyCellDelegate? { get set } // another swift protocol
-    func configure(model: MyModel) 
+    func configure(model: MyModel)
 }
 {% endhighlight %}
 
 This will also have the desired effect, without restricting the kinds of swift features we can use within this protocol. The type system can know that editing a property of a constant of this type is allowed since it can't be applied to value types, and therefore we don't need to store a `MyCellType` in a var to edit its contents.
 
-It's certainly a good thing that the compiler yelled at me for doing this the wrong way originally, as if it hadn't complained and I had used `MyCellType` with a struct later on, I could have violated swift's fundamental invariant for value types stored in a constant. However, I know I would not have done this, and telling the compiler about my intentions with a class protocol makes both me and the compiler happy. 
+It's certainly a good thing that the compiler yelled at me for doing this the wrong way originally, as if it hadn't complained and I had used `MyCellType` with a struct later on, I could have violated swift's fundamental invariant for value types stored in a constant. However, I know I would not have done this, and telling the compiler about my intentions with a class protocol makes both me and the compiler happy.
 
 Putting the proper thought into designing your protocols is crucial to getting your code to behave the way you want, and that includes considering if your protocol is meant to behave in a class-like way or in a much broader way. With this distinction, the language can know more about your intentions with how you choose to express your ideas in code, and it can provide benefits like class-based property access along the way.

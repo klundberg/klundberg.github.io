@@ -1,7 +1,7 @@
 ---
 title: Swift 2 and @available properties
 description: How the @available annotation in swift 2 may get in your way.
-tags: Swift 
+tags: swift 
 category: programming
 ---
 
@@ -94,4 +94,3 @@ class ViewController: UIViewController {
 The compiler lets this through, since computed properties don't change the memory layout of the object, so the object won't have any direct references to a class that may not exist on some devices. It's still a hassle to do though when you can't make your types use the same availability restriction.
 
 I was encouraged to file a bug in #swift-lang on freenode about this, which i've also mirrored on [openradar](https://openradar.appspot.com/radar?id=5683242493542400) with some potential implementation solutions (TL;DR: make `@available` stored properties be optional in case they cannot be set on older OS versions). Hopefully Apple will take a liking to that suggestion!
-

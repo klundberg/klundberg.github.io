@@ -1,7 +1,7 @@
 ---
 title: "Fun With Optionals, Part 1 - Basics"
 description: "A deep dive into the syntax of declaring optional types and assigning values to optional variables"
-tags: Swift Optionals
+tags: swift optionals
 category: programming
 ---
 
