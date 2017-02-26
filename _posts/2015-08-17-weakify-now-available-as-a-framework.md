@@ -1,6 +1,6 @@
 ---
 title: Weakify now available as a framework
-tags: swift cocoapods carthage
+tags: swift cocoapods carthage swift-package-manager
 category: programming
 excerpt: false
 ---
