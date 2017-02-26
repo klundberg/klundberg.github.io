@@ -41,7 +41,7 @@ Here when we initialize the cache, we listen for memory warning notifications an
 Though this looks nice, there's one very large caveat: when you reference an instance method in this way and store the method value elsewhere, that method strongly references self. If it didn't, your program could crash if the method value outlived the instance that it was bound to. Not crashing is important, but in this scenario it causes a retain cycle, since `MemoryCache` strongly references the notification observer, which strongly references the given closure, which strongly references the `MemoryCache`:
 
 <div style="margin: 0 auto; width: 320px">
-<img src="/assets/images/2015-04-15/retaincycle.png" alt="MemoryCache -> NSNotification Observer -> clearMemory Method Reference -> MemoryCache" title="Retain Cycle Illustration" />
+<img src="/images/2015-04-15/retaincycle.png" alt="MemoryCache -> NSNotification Observer -> clearMemory Method Reference -> MemoryCache" title="Retain Cycle Illustration" />
 </div>
 
 At this point we could just cave in and pass a closure into the `usingBlock:` parameter that weakly captures `self`, but that seems a little superfluous here if we only are going to call one other method in that closure anyways (and it's not as fun!)
