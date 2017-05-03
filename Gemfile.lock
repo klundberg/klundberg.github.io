@@ -201,7 +201,6 @@ DEPENDENCIES
   jekyll-paginate
   jekyll-sitemap
   jemoji
-  json
 
 BUNDLED WITH
    1.14.6
