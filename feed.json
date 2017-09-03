@@ -15,7 +15,7 @@ layout: null
         "url": "{{ site.url }}"{% if site.author.avatar %},
         "avatar": "{{ site.url }}{{ site.author.avatar }}"{% endif %}
     },
-    "items": [{% for post in site.posts %}
+    "items": [{% for post in site.posts limit:10 %}
         {
             "id": "{{ post.url | absolute_url | sha1 }}",
             "url": "{{ site.url }}{{ post.url }}",
