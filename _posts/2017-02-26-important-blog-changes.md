@@ -1,5 +1,5 @@
 ---
-title: "Important Blog Changes!"
+title: Important Blog Changes!
 tags: blog
 category: meta
 ---

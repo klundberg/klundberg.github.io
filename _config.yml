@@ -46,6 +46,8 @@ staticman:
         format           : "iso8601" # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
 atom_feed:
   path                   : # blank (default) uses feed.xml
+json_feed:
+  path                   : # blank (default) uses feed.json
 
 # SEO Related
 google_site_verification : dm22KL26h3zCTvGyJcB3A0iQ26RnQ_VoErd22Usa94E
@@ -181,7 +183,7 @@ timezone: # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 
 # Plugins
-gems:
+plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist

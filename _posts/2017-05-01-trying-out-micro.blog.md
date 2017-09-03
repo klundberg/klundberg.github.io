@@ -1,5 +1,5 @@
 ---
-title: "Micro.blog test"
+title: Micro.blog test
 tags: blog
 category: microblog
 ---

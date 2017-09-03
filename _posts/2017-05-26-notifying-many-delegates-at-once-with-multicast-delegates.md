@@ -1,5 +1,5 @@
 ---
-title: "Notifying many delegates at once with Multicast Delegates"
+title: Notifying many delegates at once with Multicast Delegates
 tags: swift objective-c delegate-pattern
 category: programming
 ---

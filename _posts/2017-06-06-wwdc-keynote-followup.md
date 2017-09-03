@@ -1,5 +1,5 @@
 ---
-title: "WWDC 2017 Keynote Wishlist Followup"
+title: WWDC 2017 Keynote Wishlist Followup
 tags: apple WWDC
 category: tech
 ---
