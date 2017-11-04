@@ -51,7 +51,7 @@ struct Person {
 }
 
 let kp = \Person.name
-let p = Person(name: "Samus")
+var p = Person(name: "Samus")
 p[keyPath: kp] = "Ridley"
 p.greet() // prints "Hello Ridley!"
 ```
