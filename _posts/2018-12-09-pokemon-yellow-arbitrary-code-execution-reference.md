@@ -3,15 +3,17 @@ category: gaming
 tags: pokemon glitches
 ---
 
-I played the first and second generations of Pokemon a ton back in the mid-late nineties, and I've recently gotten back into it with Pokemon Go and Pokemon Moon/Ultra Sun pretty hard. Nintendo sells the original gameboy games via their virtual console on the 3ds, and I've been playing a ton of Pokemon Yellow as well.
+I played the first and second generations of Pokemon a ton back in the late nineties, and I've recently gotten back into it over the past couple years with Pokemon Go, Pokemon Moon/Ultra Sun, and Pokemon Let's Go (which is amazing!). Nintendo sells the original gameboy games via their virtual console on the 3ds, and I replayed Pokemon Yellow as well on that earlier this year, and I hope to make time to play Pokemon Crystal soon as well (since I never finished the second generation games when I played in high school).
 
-There's a ton of fun glitches you can pull off in Yellow to basically do anything you want in the game via arbitrary code execution (like obtain any pokemon, alter any pokemon's stats, among other things). I'm very interested in using these to get pokemon with perfect stats or to get shiny pokemon into the latest games. However, these glitches require you to do things like have certain quantities of certain items in your inventory in a certain order (since those items can represent z80 assembly instructions that you can then execute). Remembering all the different item codes for the glitches I want to execute is hard, and there's no single comprehensive reference for all of the ones I want that I've found, so I'm going to aggregate and document them here.
+There's a ton of fun glitches you can pull off in Pokemon Yellow to basically do anything you want in the game via arbitrary code execution (like obtain any pokemon, alter any pokemon's stats, among other things). I'm very interested in using these to get pokemon with perfect stats or to get shiny pokemon into the latest games. However, these glitches require you to do things like have certain quantities of certain items in your inventory in a certain order (since those items can represent z80 assembly instructions that you can then execute). Remembering all the different item codes for the glitches I want to execute is hard, and there's no single comprehensive reference for all of the ones I want that I've found, so I'm going to aggregate and document them here.
 
-**Disclaimer:** this is for the English version of Pokemon Yellow only. Red/Blue and other languanges have different item code requirements, and red/blue requires an entirely different setup to get the glitch item that will let you execute these codes (yellow uses a glitch item named `ws# #m#`, red/blue use a glitch item named `8F`).
+**Disclaimer:** this is for the English version of Pokemon Yellow only. Pokemon Red/Blue, and other languanges have different item code requirements, and red/blue requires an entirely different setup to get the glitch item that will let you execute these codes (yellow uses a glitch item named `ws# #m#`, red/blue use a glitch item named `8F`).
+
+### Getting Started
 
 [This guide](https://www.reddit.com/r/pokemon/comments/5q8zlg/getting_gen_1_mew_in_yellow_guide_does_not_work/) describes how to do a lot of the initial setup and lists some of the initial codes you can execute, and I'll be re-iterating a lot of what this post says, but also adding some other useful information that I've gathered from other places, but use it to learn how to get `ws# #m#` and enough `Revive` to get started with these codes.
 
-When you get the `ws# #m#` item, you need to designate a box in your PC to contain only specific pokemon in a specific order. This is because using `ws# #m#` will by default treat your current box as executable code, but reordering and editing pokemon in the PC is hard, so the following pokemon list will tell `ws# #m#` to redirect execution to your inventory instead which is much easier to handle. In your box you must have these 11 pokemon in this order (and not one more):
+When you get the `ws# #m#` item, you need to designate a box in your PC to contain only specific pokemon in a specific order. This is because using `ws# #m#` will by default treat your current box as executable code, but reordering and editing pokemon in the PC is hard, so the following pokemon list will tell `ws# #m#` to redirect execution to your inventory instead which is much easier to handle. In your box you must only have exactly these 11 pokemon in this order:
 
 1. Seel **with exactly 233 HP** (nothing else has any stat requirements)
 2. Parasect
@@ -24,6 +26,8 @@ When you get the `ws# #m#` item, you need to designate a box in your PC to conta
 9. Any Pokemon
 10. Any Pokemon
 11. Any Pokemon
+
+I chose Box 12 since it's easy to remember that the last box is the special one. I recommend not using Box 1, since if you plan to transfer pokemon to the Pokemon Bank service, you'll have to move them to a different box if you don't want to lose them to the bank, unable to bring them back in.
 
 Whenever you use `ws# #m#`, make sure this box is selected, and make sure if any pokemon you get are sent to this box, that you take it out so that this list is preserved.
 
@@ -92,7 +96,7 @@ This code will increase the quantity of `TM10` by 1 each time you use it as well
 
 The ID you want controls what `Lemonade` and `Repel`'s quantities must be. For a transferrable mew, you want `Lemonade x89` and `Repel x 12`. To change it back, consult [the reddit thread I linked earler](https://www.reddit.com/r/pokemon/comments/5q8zlg/getting_gen_1_mew_in_yellow_guide_does_not_work/).
 
-Once you do this, then you can use the gift pokeon code to get a legitimate Mew.
+Once you do this, then you can use the gift pokeon code to get a legitimate, transferrable Mew.
 
 ### To edit the DV stats of a pokemon
 This will let you make a pokemon "perfect" by ensuring its individual stat adjustments (called IVs in later games, but DVs in generation 1/2) are the best ones possible, or are the precise values needed for a pokemon to be considered shiny upon transfer.
@@ -111,4 +115,4 @@ Put the pokemon you want to edit first in your party, then execute this code:
 
 ## That's it!
 
-If there's any other pokemon enthusiasts out there who know of other item codes (or who want me to add red/blue or european/japanese codes) let me know!
+If there's any other pokemon enthusiasts out there who know of other item codes (or who want me to add red/blue or european/japanese codes) let me know! If I come across any other interesting item codes, I'll update this post!
