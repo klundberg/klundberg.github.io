@@ -83,7 +83,7 @@ social:
 author:
   name             : "Kevin Lundberg"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I'm a software developer, currently working on iOS applications at Wayfair.com. My views and words are my own."
+  bio              : "I'm a software developer, with a breadth of experience in multiple technologies; mainly iOS (Swift + Objective-c) but also Android, Node.js/Javascript, and others!"
   location         : "MA, US"
   email            : kevin@klundberg.com
   encoded_email    : "&#107;&#101;&#118;&#105;&#110;&#064;&#107;&#108;&#117;&#110;&#100;&#098;&#101;&#114;&#103;&#046;&#099;&#111;&#109;"
